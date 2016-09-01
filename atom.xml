@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ug1y.github.io/"/>
-  <updated>2016-08-23T01:12:24.673Z</updated>
+  <updated>2016-09-01T02:59:42.546Z</updated>
   <id>http://ug1y.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>好用必备的web调试工具</title>
+    <link href="http://ug1y.github.io/2016/09/01/%E5%A5%BD%E7%94%A8%E5%BF%85%E5%A4%87%E7%9A%84web%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
+    <id>http://ug1y.github.io/2016/09/01/好用必备的web调试工具/</id>
+    <published>2016-09-01T02:46:11.000Z</published>
+    <updated>2016-09-01T02:59:42.546Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>不管是程序员还是搞网络安全的，一个好用上手的工具当时是十分必要的，在做一些CTF赛题和开发的过程中，经常需要用到web调试，最好用的还是<a href="http://www.firefox.com.cn/" target="_blank" rel="external">火狐浏览器</a>了，支持插件多，定制功能强，下面介绍两个好用的插件，可以点击浏览器的<a href="https://addons.mozilla.org/zh-CN/firefox/" target="_blank" rel="external">附加组件</a>查找更多搜索安装<br><a id="more"></a></p>
+<h2 id="firebug"><a href="#firebug" class="headerlink" title="firebug"></a>firebug</h2><p>支持直接修改、删除、新建cookie，用这个来操作cookie真的很方便<br><img src="/images/60cf5893ced82b57900e7f65ec3cf07b.png" alt=""></p>
+<p>修改和新建cookie时要注意存活时间，在当前时间之后即是创建，之前则是删除<br><img src="/images/167003185f5ac39ce427c83f327bdf47.png" alt=""></p>
+<h2 id="hackbar"><a href="#hackbar" class="headerlink" title="hackbar"></a>hackbar</h2><p>另一个用于调试的神奇插件，可以载入URL并且点击Execute按钮可以直接执行http请求，在这个框里修改请求参数，比如写个注入啥的，用于测试很是方便<br><img src="/images/78470a3e072dc8da5980ca5375d804bf.png" alt=""></p>
+<p>选中Enable Post data还可以修改表单数据提交请求，Referrer就更不用说了<br><img src="/images/6a3749189981a487c591b8f82cfecff9.png" alt=""></p>
+<p>注意到上面那一排下拉框了吧，都是一些便捷的小工具，比如Encoding里面，选中文本可以base64编码、URL编码、16进制转换<br><img src="/images/bd12d2a6e004b3aedd4afa5850b4c254.png" alt=""></p>
+<p>其他的包括SQL、XSS、Encryption和Other都是一些常见的编码、加密或者字符串处理，十分方便实用</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;不管是程序员还是搞网络安全的，一个好用上手的工具当时是十分必要的，在做一些CTF赛题和开发的过程中，经常需要用到web调试，最好用的还是&lt;a href=&quot;http://www.firefox.com.cn/&quot;&gt;火狐浏览器&lt;/a&gt;了，支持插件多，定制功能强，下面介绍两个好用的插件，可以点击浏览器的&lt;a href=&quot;https://addons.mozilla.org/zh-CN/firefox/&quot;&gt;附加组件&lt;/a&gt;查找更多搜索安装&lt;br&gt;
+    
+    </summary>
+    
+      <category term="实用工具" scheme="http://ug1y.github.io/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="浏览器" scheme="http://ug1y.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+      <category term="插件" scheme="http://ug1y.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="cookie" scheme="http://ug1y.github.io/tags/cookie/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
