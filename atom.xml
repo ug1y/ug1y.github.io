@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ug1y.github.io/"/>
-  <updated>2016-09-01T02:59:42.546Z</updated>
+  <updated>2016-09-03T04:03:54.315Z</updated>
   <id>http://ug1y.github.io/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQLi Labs 学习笔记 Part 1</title>
+    <link href="http://ug1y.github.io/2016/09/03/SQLi-Labs-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Part-1/"/>
+    <id>http://ug1y.github.io/2016/09/03/SQLi-Labs-学习笔记-Part-1/</id>
+    <published>2016-09-03T02:32:28.000Z</published>
+    <updated>2016-09-03T04:03:54.315Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在知乎上搜的<a href="https://www.zhihu.com/question/30505597" target="_blank" rel="external">如何做CTF训练</a>时，看到各种大神的心路历程，十分激动，刚开始学习，对于SQL注入感觉很有意思，便从大神们推荐的网站开始入手。SQLi Labs是一外国友人写的一套简单易入门的教程，实验环境发布至<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">github</a>上，视频教程我已经从youtube下载分享至百度云盘上，链接<a href="https://yun.baidu.com/s/1kVJcsyr" target="_blank" rel="external">https://yun.baidu.com/s/1kVJcsyr</a>，有需要的可以拿去不谢。</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
+<li><p>从<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">https://github.com/Audi-1/sqli-labs</a>上下载源代码<br><img src="/images/sqli-37784a27.png" alt=""></p>
+</li>
+<li><p>解压至Apache webroot目录下，我用的是<a href="http://www.wampserver.com/" target="_blank" rel="external">wampserver</a>，复制到www目录下<br><img src="/images/sqli-9455b9b1.png" alt=""></p>
+</li>
+<li><p>打开<code>sql-connections</code>目录下的<code>db-creds.inc</code>文件，修改mysql用户名、密码和主机<br><img src="/images/sqli-225b1732.png" alt=""></p>
+</li>
+<li><p>打开浏览器，访问<a href="http://localhost/sqli-labs/" target="_blank" rel="external">http://localhost/sqli-labs/</a>,点击<code>Setup/reset Database for labs</code>链接会自动为你初始化数据库<br><img src="/images/sqli-ac79751f.png" alt=""></p>
+</li>
+</ol>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>网上也有关于这个这个实验环境的通关攻略，我借鉴别人的翻译结合自己看视频的过程把学习笔记记下来，方便查阅。实验环境总共分了4页，从基础到复杂的，视频资源也是最多到第2页就没有了，学习了这些基本能掌握常用的SQL注入的一些实例，能够进阶理解更复杂多变的注入方法</p>
+<p><img src="/images/sqli-e4f15294.png" alt=""></p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;在知乎上搜的&lt;a href=&quot;https://www.zhihu.com/question/30505597&quot;&gt;如何做CTF训练&lt;/a&gt;时，看到各种大神的心路历程，十分激动，刚开始学习，对于SQL注入感觉很有意思，便从大神们推荐的网站开始入手。SQLi Labs是一外国友人写的一套简单易入门的教程，实验环境发布至&lt;a href=&quot;https://github.com/Audi-1/sqli-labs&quot;&gt;github&lt;/a&gt;上，视频教程我已经从youtube下载分享至百度云盘上，链接&lt;a href=&quot;https://yun.baidu.com/s/1kVJcsyr&quot;&gt;https://yun.baidu.com/s/1kVJcsyr&lt;/a&gt;，有需要的可以拿去不谢。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SQL注入" scheme="http://ug1y.github.io/categories/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="SQLi Labs" scheme="http://ug1y.github.io/categories/SQL%E6%B3%A8%E5%85%A5/SQLi-Labs/"/>
+    
+    
+      <category term="CTF" scheme="http://ug1y.github.io/tags/CTF/"/>
+    
+      <category term="SQL注入" scheme="http://ug1y.github.io/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>方便实用的字符串编码网站</title>
+    <link href="http://ug1y.github.io/2016/09/03/%E6%96%B9%E4%BE%BF%E5%AE%9E%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E7%BD%91%E7%AB%99/"/>
+    <id>http://ug1y.github.io/2016/09/03/方便实用的字符串编码网站/</id>
+    <published>2016-09-03T02:12:23.000Z</published>
+    <updated>2016-09-03T02:27:24.982Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/d75159a908c9dd36930cdf9c86189954.png" alt=""></p>
+<a id="more"></a>
+<p>在进行网站测试时，经常会碰到编码绕过等问题，例如HTML编码、URL编码、base64编码，甚至还有其他像MD5、SHA1等哈希值的计算。其他的包括一些代码的混淆，SQL字符转换、Javascript等。推荐一个网站，也是我不经意看到的，可以直接访问主页<a href="https://encoder.mattiasgeniar.be/" target="_blank" rel="external">Decode, Encode or Obfuscate your string</a>使用，也可以下载<a href="https://github.com/mattiasgeniar/Encoder" target="_blank" rel="external">github</a>上的源码至本地服务器上使用</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/images/d75159a908c9dd36930cdf9c86189954.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="实用工具" scheme="http://ug1y.github.io/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="编码" scheme="http://ug1y.github.io/tags/%E7%BC%96%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>好用必备的web调试工具</title>
