@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CTF,SQL注入," />
+  <meta name="keywords" content="SQLi Labs," />
 
 
 
@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://ug1y.github.io/images/sqli-225b1732.png">
 <meta property="og:image" content="http://ug1y.github.io/images/sqli-ac79751f.png">
 <meta property="og:image" content="http://ug1y.github.io/images/sqli-e4f15294.png">
-<meta property="og:updated_time" content="2016-09-03T04:03:54.315Z">
+<meta property="og:updated_time" content="2016-09-05T15:35:58.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLi Labs 学习笔记 Part 1">
 <meta name="twitter:description" content="前言在知乎上搜的如何做CTF训练时，看到各种大神的心路历程，十分激动，刚开始学习，对于SQL注入感觉很有意思，便从大神们推荐的网站开始入手。SQLi Labs是一外国友人写的一套简单易入门的教程，实验环境发布至github上，视频教程我已经从youtube下载分享至百度云盘上，链接https://yun.baidu.com/s/1kVJcsyr，有需要的可以拿去不谢。">
@@ -330,18 +330,6 @@
 
                 
                 
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SQL注入/SQLi-Labs/" itemprop="url" rel="index">
-                    <span itemprop="name">SQLi Labs</span>
-                  </a>
-                </span>
-
-                
-                
 
               
             </span>
@@ -378,15 +366,21 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在知乎上搜的<a href="https://www.zhihu.com/question/30505597" target="_blank" rel="external">如何做CTF训练</a>时，看到各种大神的心路历程，十分激动，刚开始学习，对于SQL注入感觉很有意思，便从大神们推荐的网站开始入手。SQLi Labs是一外国友人写的一套简单易入门的教程，实验环境发布至<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">github</a>上，视频教程我已经从youtube下载分享至百度云盘上，链接<a href="https://yun.baidu.com/s/1kVJcsyr" target="_blank" rel="external">https://yun.baidu.com/s/1kVJcsyr</a>，有需要的可以拿去不谢。</p>
 <a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ol>
-<li><p>从<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">https://github.com/Audi-1/sqli-labs</a>上下载源代码<br><img src="/images/sqli-37784a27.png" alt=""></p>
-</li>
-<li><p>解压至Apache webroot目录下，我用的是<a href="http://www.wampserver.com/" target="_blank" rel="external">wampserver</a>，复制到www目录下<br><img src="/images/sqli-9455b9b1.png" alt=""></p>
-</li>
-<li><p>打开<code>sql-connections</code>目录下的<code>db-creds.inc</code>文件，修改mysql用户名、密码和主机<br><img src="/images/sqli-225b1732.png" alt=""></p>
-</li>
-<li><p>打开浏览器，访问<a href="http://localhost/sqli-labs/" target="_blank" rel="external">http://localhost/sqli-labs/</a>,点击<code>Setup/reset Database for labs</code>链接会自动为你初始化数据库<br><img src="/images/sqli-ac79751f.png" alt=""></p>
-</li>
+<li>从<a href="https://github.com/Audi-1/sqli-labs" target="_blank" rel="external">https://github.com/Audi-1/sqli-labs</a>上下载源代码</li>
 </ol>
+<p><img src="/images/sqli-37784a27.png" alt=""></p>
+<ol>
+<li>解压至Apache webroot目录下，我用的是<a href="http://www.wampserver.com/" target="_blank" rel="external">wampserver</a>，复制到www目录下</li>
+</ol>
+<p><img src="/images/sqli-9455b9b1.png" alt=""></p>
+<ol>
+<li>打开<code>sql-connections</code>目录下的<code>db-creds.inc</code>文件，修改mysql用户名、密码和主机</li>
+</ol>
+<p><img src="/images/sqli-225b1732.png" alt=""></p>
+<ol>
+<li>打开浏览器，访问<a href="http://localhost/sqli-labs/" target="_blank" rel="external">http://localhost/sqli-labs/</a>,点击<code>Setup/reset Database for labs</code>链接会自动为你初始化数据库</li>
+</ol>
+<p><img src="/images/sqli-ac79751f.png" alt=""></p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>网上也有关于这个这个实验环境的通关攻略，我借鉴别人的翻译结合自己看视频的过程把学习笔记记下来，方便查阅。实验环境总共分了4页，从基础到复杂的，视频资源也是最多到第2页就没有了，学习了这些基本能掌握常用的SQL注入的一些实例，能够进阶理解更复杂多变的注入方法</p>
 <p><img src="/images/sqli-e4f15294.png" alt=""></p>
 <hr>
@@ -412,9 +406,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CTF/" rel="tag">#CTF</a>
-          
-            <a href="/tags/SQL注入/" rel="tag">#SQL注入</a>
+            <a href="/tags/SQLi-Labs/" rel="tag">#SQLi Labs</a>
           
         </div>
       
@@ -508,7 +500,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -516,7 +508,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -525,7 +517,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
