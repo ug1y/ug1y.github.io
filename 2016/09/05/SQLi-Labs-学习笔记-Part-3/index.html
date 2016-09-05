@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://ug1y.github.io/images/sqli_20160905232220.png">
 <meta property="og:image" content="http://ug1y.github.io/images/sqli_20160905232713.png">
 <meta property="og:image" content="http://ug1y.github.io/images/sqli_20160905233043.png">
-<meta property="og:updated_time" content="2016-09-05T15:41:58.704Z">
+<meta property="og:updated_time" content="2016-09-05T15:45:05.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLi Labs 学习笔记 Part 3">
 <meta name="twitter:description" content="第四课：基于错误的SQL注入上一部分，已经初步了解了什么是SQL注入，程序获取用户的输入然后进行SQL查询，但是没有对用户的输入做任何过滤，导致用户构造一些意料之外的输入使得原先的sql语句发生了变化，如插入条件判断、注释后面的语句等。我们通过一些最基础的方法构造注入语句查询我们想要得到的信息，攻击目标主机，下面将介绍再其他复杂情况下构造SQL注入语句的一些方法。">
@@ -374,7 +374,7 @@
 <ul>
 <li><code>?id=1&#39;</code></li>
 <li><code>?id=1&quot;</code></li>
-<li><code>?id=1\\</code></li>
+<li><code>?id=1\</code></li>
 </ul>
 <p><img src="/images/sqli_20160905223120.png" alt=""></p>
 <p>打印出了错误信息，同时，根据错误来推测sql语句大概是怎样写的，Less-5中返回的错误能得知参数<code>id</code>是用单引号包裹着的，于是构造一些能正确输出的注入语句，能够执行我们的恶意代码，如<code>?id=1&#39; or 1--+</code>等。</p>
