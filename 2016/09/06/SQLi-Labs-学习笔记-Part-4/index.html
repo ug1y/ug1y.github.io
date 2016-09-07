@@ -92,14 +92,14 @@
 <meta property="og:url" content="http://ug1y.github.io/2016/09/06/SQLi-Labs-学习笔记-Part-4/index.html">
 <meta property="og:site_name" content="ugly's Notes">
 <meta property="og:description" content="第五课：布尔盲注在Less-8中，我们通过注入一些查询后，会发现并没有在屏幕上看到错误信息，因此也不能确定在这个网页上是否存在注入。这也是为什么这种类型的注入叫做盲注。通常有两种类型的盲注，基于布尔的和基于时间的。">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli_20160906205727.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli_20160906210009.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli_20160906210547.png">
-<meta property="og:updated_time" content="2016-09-06T13:26:53.615Z">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160906205727.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160906210009.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160906210547.png">
+<meta property="og:updated_time" content="2016-09-07T13:51:14.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLi Labs 学习笔记 Part 4">
 <meta name="twitter:description" content="第五课：布尔盲注在Less-8中，我们通过注入一些查询后，会发现并没有在屏幕上看到错误信息，因此也不能确定在这个网页上是否存在注入。这也是为什么这种类型的注入叫做盲注。通常有两种类型的盲注，基于布尔的和基于时间的。">
-<meta name="twitter:image" content="http://ug1y.github.io/images/sqli_20160906205727.png">
+<meta name="twitter:image" content="http://ug1y.github.io/images/sqli/sqli_20160906205727.png">
 
 
 
@@ -363,11 +363,11 @@
       
         <h1 id="第五课：布尔盲注"><a href="#第五课：布尔盲注" class="headerlink" title="第五课：布尔盲注"></a>第五课：布尔盲注</h1><p>在Less-8中，我们通过注入一些查询后，会发现并没有在屏幕上看到错误信息，因此也不能确定在这个网页上是否存在注入。这也是为什么这种类型的注入叫做盲注。通常有两种类型的盲注，基于布尔的和基于时间的。<br><a id="more"></a></p>
 <p>首先，通过一系列尝试，得知注入<code>1&#39; or 1--+</code>是能够成功执行的。</p>
-<p><img src="/images/sqli_20160906205727.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160906205727.png" alt=""></p>
 <p>而条件为假时<code>1&#39; and 0--+</code>结果如下：</p>
-<p><img src="/images/sqli_20160906210009.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160906210009.png" alt=""></p>
 <p>通过两种不同条件下结果的差异，我们可以通过一些查询来猜测我们构造的一些语句的真假值。利用<code>length()</code>、<code>substr()</code>、<code>ascii()</code>等函数来猜测每一个字符。<br><code>1&#39; and ascii(substr(select database(),1,1))&gt;100--+</code></p>
-<p><img src="/images/sqli_20160906210547.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160906210547.png" alt=""></p>
 <p>反复尝试数值大小，就能得到特定位置的字符的ascii值，然后调整字符串截取函数的位置，猜测出整个字符串是什么。同样也可以用这种方法猜测出所有前面介绍的方法获取表、字段以及数据。<br><code>1&#39; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100--+</code></p>
 <h1 id="第六课：基于时间的盲注"><a href="#第六课：基于时间的盲注" class="headerlink" title="第六课：基于时间的盲注"></a>第六课：基于时间的盲注</h1><p>基于时间的盲注与布尔盲注本质是一样的，通过构造特殊的注入使得产生不同的结果，然后判断条件的真假。例如：<br><code>1&#39; and if((select database()) like &#39;s%&#39;,sleep(5),null)--+</code></p>
 <p>若条件正确，则会执行后面的<code>sleep()</code>函数，所以表现的状态是浏览器不会立即得到响应，而是需要等待一段时间，所等待的时间则是sql语句查询时执行休眠函数的时间。其他查询例如：<br><code>1&#39; and if(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)=&#39;e&#39;,sleep(5),null)--+</code></p>
@@ -411,6 +411,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/07/一道文件包含和自加密的题/" rel="prev" title="一道文件包含和自加密的题">
+                一道文件包含和自加密的题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -485,7 +489,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -493,7 +497,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -502,7 +506,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

