@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Set Encoding to utf8  -->
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="nav-wrapper row">
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+        <div class="col s2">
+          <a href="#" class="brand-logo">Hao Yin</a>
+        </div>
+        
+        <div class="col s10">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="../index.html">个人简历</a></li>
+            <li><a href="notes.html">学习笔记</a></li>
+            <li class="active"><a href="life.html">生活动态</a></li>
+            <li><a href="photo.html">照片图集</a></li>
+            <li><a href="more.html">了解更多</a></li>
+          </ul>
+        </div>
+        
+        
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="../index.html">个人简历</a></li>
+      <li><a href="notes.html">学习笔记</a></li>
+      <li class="active"><a href="life.html">生活动态</a></li>
+      <li><a href="photo.html">照片图集</a></li>
+      <li><a href="more.html">了解更多</a></li>
+    </ul>
+    
+
+    <div class="container">
+      <!-- Page Content goes here -->
+      <div class="row">
+        <div class="center-align">
+          <h3>生活动态</h3>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <h6>等等看，会有的...</h6>
+          <div class="row">
+            <div class="col s8" style="font-size: 16px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      });
+    </script>
+  </body>
+</html>
